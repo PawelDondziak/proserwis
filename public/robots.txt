@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://proserwis.com.pl/sitemap.xml
