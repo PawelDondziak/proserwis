@@ -113,7 +113,7 @@ function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <a className="brand" href="#start" aria-label="PROSERWIS — strona główna" onClick={closeMenu}>
-          <img src="/images/proserwis-logo.png" alt="PROSERWIS — serwis telewizorów" width="168" height="44" />
+          <img src="/images/proserwis-logo.svg" alt="PROSERWIS — serwis telewizorów" width="2008" height="783" />
         </a>
         <button
           className="menu-toggle"
@@ -233,7 +233,7 @@ function About() {
       <div className="container about-grid">
         <div className="about-mark" aria-hidden="true">
           <div className="about-line" />
-          <img src="/images/proserwis-logo.png" alt="" width="260" height="69" />
+          <img src="/images/proserwis-logo.svg" alt="" width="2008" height="783" />
           <span>GDAŃSK <i /> SERWIS ELEKTRONIKI</span>
         </div>
         <div className="about-copy">
@@ -455,7 +455,7 @@ function Footer() {
         <div className="footer-main">
           <div className="footer-brand">
             <a className="brand" href="#start" aria-label="PROSERWIS — strona główna">
-              <img src="/images/proserwis-logo.png" alt="PROSERWIS — serwis telewizorów" width="168" height="44" />
+              <img src="/images/proserwis-logo.svg" alt="PROSERWIS — serwis telewizorów" width="2008" height="783" />
             </a>
             <p>Serwis telewizorów i sprzętu elektronicznego w Gdańsku. Skontaktuj się z nami w sprawie usterki.</p>
           </div>
