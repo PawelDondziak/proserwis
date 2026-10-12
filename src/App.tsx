@@ -363,7 +363,10 @@ function RepairForm() {
           <p className="eyebrow">ZGŁOSZENIE SERWISOWE</p>
           <h2>Zgłoś usterkę telewizora</h2>
           <p>Wypełnij formularz, a skontaktujemy się z Tobą, aby omówić problem.</p>
-          <div className="form-assurance"><span><Phone size={18} /></span><p>Wolisz porozmawiać?<br /><a href={`tel:${company.phoneHref}`}>{company.phone}</a></p></div>
+          <a className="form-assurance" href={`tel:${company.phoneHref}`} aria-label={`Zadzwoń do serwisu: ${company.phone}`}>
+            <span><Phone size={18} /></span>
+            <p>Wolisz porozmawiać?<br /><strong>{company.phone}</strong></p>
+          </a>
           <div className="form-note"><span className="note-rule" /> Informacja o przetwarzaniu danych zostanie udostępniona przed uruchomieniem formularza.</div>
         </div>
         <form className="repair-form" ref={formRef} onSubmit={handleSubmit} noValidate>
