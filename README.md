@@ -11,6 +11,8 @@ npm run dev
 
 Create a production build with `npm run build`, or preview it with `npm run preview`.
 
+The browser-tab satellite icon is provided as a 32x32 PNG with a standard `/favicon.ico` fallback. Both assets are in `public/` and are copied into the production build.
+
 ## Repair request API
 
 Set `VITE_REPAIR_REQUESTS_ENDPOINT` in a local `.env` file to the real HTTPS endpoint before enabling request submissions. `.env.example` shows the required setting. If it is unset, the form displays a configuration error and does not claim that a request was sent.
