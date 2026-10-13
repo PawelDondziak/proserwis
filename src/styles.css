@@ -250,7 +250,8 @@ h1, h2, h3 { font-family: var(--heading); }
 .footer-brand p { max-width: 245px; margin: 19px 0 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
 .footer-column { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .footer-column h3 { margin-bottom: 5px; font-size: 12px; }
-.footer-column > a, .footer-column > span { color: #666a73; font-size: 10px; line-height: 1.6; }
+.footer-column > a, .footer-column > span, .footer-column > address { color: #666a73; font-size: 10px; line-height: 1.6; }
+.footer-column > address { font-style: normal; }
 .footer-column small { color: #858991; font-size: 9px; }
 .footer-legal-note { text-align: left; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 18px; border-top: 1px solid var(--line); color: #7a7e86; font-size: 9px; }

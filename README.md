@@ -43,7 +43,7 @@ The form displays local previews but does not upload or email files. Requests wi
 
 - Configure and test the production repair-request endpoint.
 - Publish an approved privacy notice and establish the applicable legal basis and wording before collecting personal information. The form intentionally does not include an unverified consent checkbox.
-- Have the business owner confirm the contact details, production domain, and company information in `src/config/company.ts`.
+- The owner confirmed the PROSERWIS name and current address, phone, and email in `src/config/company.ts`. Confirm the production domain separately; no registration numbers have been supplied.
 - Confirm the canonical URL and metadata if the production domain changes.
 - The founding year is intentionally not published until confirmed. No opening hours, service guarantees, certifications, reviews, ratings, or authorized-service claims have been added.
 

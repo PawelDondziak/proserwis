@@ -516,15 +516,15 @@ function Footer() {
             <a className="brand" href="#start" aria-label="PROSERWIS — strona główna">
               <img src="/images/proserwis-logo.svg" alt="PROSERWIS — serwis telewizorów" width="2008" height="783" />
             </a>
-            <p>Serwis telewizorów i sprzętu elektronicznego w Gdańsku. Skontaktuj się z nami w sprawie usterki.</p>
+            <p>{company.description} Skontaktuj się z nami w sprawie usterki.</p>
           </div>
-          <div className="footer-column"><h3>Nawigacja</h3><a href="#start">Strona główna</a><a href="#naprawa">Naprawa telewizorów</a><a href="#o-firmie">O firmie</a><a href="#kontakt">Kontakt</a></div>
-          <div className="footer-column"><h3>Kontakt</h3><a href={`tel:${company.phoneHref}`}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a><span>{company.address}</span></div>
+          <nav className="footer-column" aria-label="Nawigacja w stopce"><h3>Nawigacja</h3><a href="#start">Strona główna</a><a href="#naprawa">Naprawa telewizorów</a><a href="#o-firmie">O firmie</a><a href="#kontakt">Kontakt</a></nav>
+          <div className="footer-column"><h3>Kontakt</h3><a href={`tel:${company.phoneHref}`}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a><address>{company.address}</address></div>
           <div className="footer-column"><h3>Informacje</h3><a className="footer-legal-note" href="/polityka-prywatnosci.html">Polityka prywatności<br /><small>Projekt — wymaga uzupełnienia przed uruchomieniem.</small></a></div>
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {company.name}. Wszelkie prawa zastrzeżone.</span>
-          <a href="#start">Wróć na górę <ArrowDown size={14} /></a>
+          <a href="#start">Wróć na górę <ArrowDown size={14} aria-hidden="true" /></a>
         </div>
       </div>
     </footer>
