@@ -105,7 +105,7 @@ function validate(values: FormValues): FormErrors {
   const errors: FormErrors = {}
   const phoneDigits = values.phone.replace(/\D/g, '')
 
-  if (values.name.trim().length < 2) errors.name = 'Podaj imię i nazwisko.'
+  if (values.name.trim().length < 2) errors.name = 'Podaj imię.'
   if (phoneDigits.length < 9 || phoneDigits.length > 15) {
     errors.phone = 'Podaj prawidłowy numer telefonu (od 9 do 15 cyfr).'
   }
@@ -422,11 +422,11 @@ function RepairForm() {
             <span><Phone size={18} /></span>
             <p>Wolisz porozmawiać?<br /><strong>{company.phone}</strong></p>
           </a>
-          <div className="form-note"><span className="note-rule" /> Informacja o przetwarzaniu danych zostanie udostępniona przed uruchomieniem formularza.</div>
+          <div className="form-note"><span className="note-rule" /> Administratorem danych jest PROSERWIS, NIP {company.nip}. Dane wykorzystujemy do obsługi zgłoszenia i naprawy. <a href="/polityka-prywatnosci.html">Przeczytaj politykę prywatności</a>.</div>
         </div>
         <form className="repair-form" ref={formRef} onSubmit={handleSubmit} noValidate>
           <div className="form-grid">
-            <Field name="name" label="Imię i nazwisko" value={values.name} onChange={updateValue} error={errors.name} autoComplete="name" placeholder="Jan Kowalski" required />
+            <Field name="name" label="Imię" value={values.name} onChange={updateValue} error={errors.name} autoComplete="given-name" placeholder="Jan" required />
             <Field name="phone" label="Numer telefonu" value={values.phone} onChange={updateValue} error={errors.phone} type="tel" autoComplete="tel" placeholder="+48 000 000 000" required />
             <Field name="email" label="Adres e-mail" value={values.email} onChange={updateValue} error={errors.email} type="email" autoComplete="email" placeholder="jan@przyklad.pl" />
             <Field name="brand" label="Marka telewizora" value={values.brand} onChange={updateValue} autoComplete="off" placeholder="np. Samsung" />
@@ -519,8 +519,8 @@ function Footer() {
             <p>{company.description} Skontaktuj się z nami w sprawie usterki.</p>
           </div>
           <nav className="footer-column" aria-label="Nawigacja w stopce"><h3>Nawigacja</h3><a href="#start">Strona główna</a><a href="#naprawa">Naprawa telewizorów</a><a href="#o-firmie">O firmie</a><a href="#kontakt">Kontakt</a></nav>
-          <div className="footer-column"><h3>Kontakt</h3><a href={`tel:${company.phoneHref}`}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a><address>{company.address}</address></div>
-          <div className="footer-column"><h3>Informacje</h3><a className="footer-legal-note" href="/polityka-prywatnosci.html">Polityka prywatności<br /><small>Projekt — wymaga uzupełnienia przed uruchomieniem.</small></a></div>
+          <div className="footer-column"><h3>Kontakt</h3><a href={`tel:${company.phoneHref}`}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a><address>{company.address}</address><span>NIP: {company.nip}</span></div>
+          <div className="footer-column"><h3>Informacje</h3><a className="footer-legal-note" href="/polityka-prywatnosci.html">Polityka prywatności</a></div>
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {company.name}. Wszelkie prawa zastrzeżone.</span>
