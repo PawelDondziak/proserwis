@@ -203,6 +203,34 @@ h1, h2, h3 { font-family: var(--heading); }
 .attachment-summary { margin: 15px 0 0; color: #555861; font-size: 10px; font-weight: 600; line-height: 1.5; }
 .attachment-errors { display: grid; gap: 5px; margin: 9px 0 0; padding: 10px 12px 10px 27px; border-radius: 3px; background: #fbefef; color: #842d35; font-size: 10px; line-height: 1.5; }
 
+.section.coverage-section { padding-bottom: 52.5px; background: #fff; }
+.coverage-section + .process-section { padding-top: 52.5px; }
+.coverage-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 64px; }
+.coverage-copy, .coverage-map { min-width: 0; }
+.coverage-copy .section-heading { margin-bottom: 28px; }
+.coverage-note { max-width: 380px; margin-bottom: 22px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.coverage-map { margin: 0; padding: 26px; border: 1px solid var(--line); border-radius: 5px; background: #f8f9fb; }
+.coverage-map-caption { display: flex; flex-direction: column; gap: 7px; }
+.coverage-map-caption strong { font-size: 15px; }
+.coverage-map-caption > span { color: var(--muted); font-size: 12px; }
+.coverage-map-svg { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; margin-block: 14px; }
+.coverage-region { fill: #e4e7ed; }
+.coverage-region-border { fill: none; stroke: #858c9d; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.coverage-area { fill: #52658c; stroke: var(--navy); stroke-width: 1.5; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
+.coverage-marker-halo { fill: #fff; fill-opacity: .9; }
+.coverage-marker { fill: var(--navy); stroke: #fff; stroke-width: 2; }
+.coverage-city-label { fill: var(--ink); stroke: #f8f9fb; stroke-width: 5; stroke-linejoin: round; paint-order: stroke; font-size: 23px; font-weight: 700; }
+.coverage-north path { fill: none; stroke: var(--navy); stroke-width: 1.5; }
+.coverage-north text { fill: var(--navy); font-size: 17px; }
+.coverage-legend { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 0; padding: 0; list-style: none; }
+.coverage-legend li { display: flex; align-items: center; gap: 9px; color: #414854; font-size: 12px; line-height: 1.6; }
+.coverage-swatch { width: 15px; height: 15px; flex: 0 0 auto; border-radius: 2px; }
+.coverage-swatch-area { border: 1px solid var(--navy); background: repeating-linear-gradient(125deg, transparent 0 5px, rgba(255,255,255,.22) 5px 7px), #52658c; }
+.coverage-disclaimer { margin: 18px 0 0; color: #555b67; font-size: 12px; line-height: 1.7; }
+.coverage-attribution { margin: 15px 0 0; color: #555b67; font-size: 10px; line-height: 1.8; }
+.coverage-attribution a { text-decoration: underline; text-underline-offset: 3px; }
+.coverage-attribution a:hover { color: var(--navy); }
+
 .contact-section { padding-block: 75px 65px; background: var(--navy); color: #fff; }
 .contact-top { display: flex; align-items: end; justify-content: space-between; gap: 25px; padding-bottom: 39px; border-bottom: 1px solid rgba(255,255,255,.22); }
 .contact-top .eyebrow { margin-bottom: 13px; color: #c5cbe0; }
@@ -247,11 +275,16 @@ h1, h2, h3 { font-family: var(--heading); }
   .art-note { left: -4px; bottom: 5px; }
   .art-index { right: 0; bottom: 8px; }
   .section { padding-block: 80px; }
+  .section.coverage-section { padding-bottom: 40px; }
+  .coverage-section + .process-section { padding-top: 40px; }
   .problem-grid { grid-template-columns: repeat(2, 1fr); }
   .problem-card { min-height: 220px; }
   .about-grid { gap: 45px; }
   .form-layout { grid-template-columns: .7fr 1.3fr; gap: 35px; }
   .repair-form { padding: 24px; }
+  .coverage-grid { grid-template-columns: 1fr; gap: 34px; }
+  .coverage-copy .section-intro { max-width: 600px; }
+  .coverage-map { width: 100%; max-width: 620px; justify-self: center; }
   .footer-main { gap: 25px; }
 }
 
@@ -282,6 +315,8 @@ h1, h2, h3 { font-family: var(--heading); }
   .art-note { left: 0; bottom: 0; padding: 10px 12px; }
   .art-index { bottom: 6px; font-size: 8px; }
   .section { padding-block: 68px; }
+  .section.coverage-section { padding-bottom: 34px; }
+  .coverage-section + .process-section { padding-top: 34px; }
   .section-heading { margin-bottom: 30px; }
   .section-heading h2, .about-copy h2, .form-intro h2, .contact-top h2 { font-size: 32px; }
   .section-heading-row { display: block; }
@@ -319,6 +354,9 @@ h1, h2, h3 { font-family: var(--heading); }
   .attachment-dropzone { min-height: 170px; }
   .form-submit-row { align-items: stretch; flex-direction: column; }
   .form-submit-row .button { width: 100%; }
+  .coverage-map { padding: 20px 16px; }
+  .coverage-copy .button { max-width: 100%; }
+  .coverage-city-label, .coverage-north text { font-size: 30px; }
   .contact-section { padding-block: 61px 52px; }
   .contact-top { align-items: flex-start; flex-direction: column; padding-bottom: 29px; }
   .contact-top h2 { font-size: 31px; }

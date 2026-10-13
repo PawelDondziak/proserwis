@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { company } from './config/company'
 import AttachmentUploader from './components/AttachmentUploader'
+import ServiceCoverage from './components/ServiceCoverage'
 import { submitRepairRequest, type RepairRequest } from './services/repairRequests'
 import {
   MAX_PHOTOS,
@@ -538,6 +539,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Problems />
+        <ServiceCoverage />
         <Process />
         <About />
         <RepairForm />

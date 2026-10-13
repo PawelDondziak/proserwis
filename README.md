@@ -46,3 +46,28 @@ The form displays local previews but does not upload or email files. Requests wi
 - Have the business owner confirm the contact details, production domain, and company information in `src/config/company.ts`.
 - Confirm the canonical URL and metadata if the production domain changes.
 - The founding year is intentionally not published until confirmed. No opening hours, service guarantees, certifications, reviews, ratings, or authorized-service claims have been added.
+
+## Service coverage map
+
+The service coverage section sits between the common television problems and the repair process sections. Its CTA links to the existing `#kontakt` section; the repair form and submission behavior are unchanged.
+
+### Geometry and attribution
+
+The regional outline is the `PL-PM` feature from the simplified [geoBoundaries gbOpen Poland ADM1 dataset](https://github.com/wmgeolab/geoBoundaries/blob/9469f09/releaseData/gbOpen/POL/ADM1/geoBoundaries-POL-ADM1_simplified.geojson), pinned to revision `9469f09`, boundary ID `POL-ADM1-17162690`. The [dataset metadata](https://www.geoboundaries.org/api/current/gbOpen/POL/ADM1/) identifies OpenStreetMap / Wambacher as the source, a represented year of 2017, and **Open Database License 1.0**, not CC BY. Attribution and a license link are visible below the map. The extracted geographic data is distributed under [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/) at `public/maps/pomorskie.geojson`, also downloadable from the section.
+
+The SVG path in `src/config/pomorskieOutline.ts` is generated from that geographic outline using a local equirectangular projection with longitude scaled at the region's midpoint latitude. It retains the source's simplified boundary; it is a geographically grounded regional map, not a cadastral or navigation map. North is up. Gdańsk's city reference point (18.6540233° E, 54.3482907° N) comes from [Wikidata Q1792, P625](https://www.wikidata.org/wiki/Q1792#P625) (CC0); it is not a claim about the workshop's exact location.
+
+To regenerate the assets from the pinned public source, run from the repository root:
+
+```sh
+curl -fL 'https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/POL/ADM1/geoBoundaries-POL-ADM1_simplified.geojson' -o /tmp/proserwis-pol-adm1.geojson
+node scripts/generate-coverage-map.mjs /tmp/proserwis-pol-adm1.geojson
+```
+
+### Updating the service area
+
+All customer-facing copy, the contact target, marker labels, and the separate `coveragePolygon` are in `src/config/serviceCoverage.ts`. The polygon uses **SVG display coordinates in a 600 × 480 viewBox**, not invented geographic coordinates. It currently covers the entire viewBox and is clipped to the real voivodeship outline, highlighting all of Pomeranian Voivodeship as requested. Change those vertices, or add vertices, to adjust the highlighted layer without changing the component or regional boundary. SVG x increases eastward; y increases southward.
+
+**The highlighted shape is the geographic voivodeship, not an approved service boundary.** Hatching, the legend, the accessible description, and a visible disclaimer clarify that highlighting the whole region does not confirm service in every town. No individual towns are advertised as covered.
+
+Before replacing this regional highlight with a confirmed service polygon, the owner must approve the geographic limits, eligible towns and exclusions, and any conditions on service or collection. If a confirmed geographic polygon is supplied later, project it using the same transformation as the outline, update `coveragePolygon`, and revise the description, disclaimer, legend, and accessible description together. Keep attribution when changing geographic sources.
