@@ -12,7 +12,19 @@ import {
   X,
 } from 'lucide-react'
 import { company } from './config/company'
+import AttachmentUploader from './components/AttachmentUploader'
 import { submitRepairRequest, type RepairRequest } from './services/repairRequests'
+import {
+  MAX_PHOTOS,
+  MAX_PHOTO_SIZE,
+  MAX_PHOTOS_SIZE,
+  MAX_TOTAL_SIZE,
+  MAX_VIDEO_HEIGHT,
+  MAX_VIDEO_SIZE,
+  MAX_VIDEO_WIDTH,
+  isVideoDurationAllowed,
+  type RepairAttachments,
+} from './utils/attachments'
 
 const problemCards = [
   {
@@ -299,8 +311,19 @@ function RepairForm() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [statusMessage, setStatusMessage] = useState('')
+  const [attachments, setAttachments] = useState<RepairAttachments>({ photos: [], video: null })
+  const [attachmentsProcessing, setAttachmentsProcessing] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
   const submitting = status === 'loading'
+
+  const updateAttachments = (nextAttachments: RepairAttachments, processing: boolean) => {
+    setAttachments(nextAttachments)
+    setAttachmentsProcessing(processing)
+    if (status === 'error') {
+      setStatus('idle')
+      setStatusMessage('')
+    }
+  }
 
   const updateValue = (name: keyof FormValues, value: string) => {
     setValues((current) => ({ ...current, [name]: value }))
@@ -328,6 +351,37 @@ function RepairForm() {
     if (values.website) {
       setStatus('error')
       setStatusMessage('Nie udało się wysłać zgłoszenia. Spróbuj ponownie później.')
+      return
+    }
+
+    if (attachmentsProcessing) {
+      setStatus('error')
+      setStatusMessage('Poczekaj, aż przygotowywanie załączników zostanie zakończone.')
+      return
+    }
+
+    const photosSize = attachments.photos.reduce((total, photo) => total + photo.file.size, 0)
+    const attachmentSize = photosSize + (attachments.video?.file.size ?? 0)
+    const invalidAttachments = attachments.photos.length > MAX_PHOTOS
+      || attachments.photos.some((photo) => photo.file.size > MAX_PHOTO_SIZE || !['image/webp', 'image/jpeg'].includes(photo.file.type))
+      || photosSize > MAX_PHOTOS_SIZE
+      || attachmentSize > MAX_TOTAL_SIZE
+      || Boolean(attachments.video && (
+        attachments.video.file.size > MAX_VIDEO_SIZE
+        || !isVideoDurationAllowed(attachments.video.duration)
+        || attachments.video.width > MAX_VIDEO_WIDTH
+        || attachments.video.height > MAX_VIDEO_HEIGHT
+      ))
+
+    if (invalidAttachments) {
+      setStatus('error')
+      setStatusMessage('Jeden lub więcej załączników nie spełnia wymaganych limitów. Usuń je lub wybierz pliki o mniejszym rozmiarze.')
+      return
+    }
+
+    if (attachments.photos.length > 0 || attachments.video) {
+      setStatus('error')
+      setStatusMessage('Załączniki nie zostały wysłane. Formularz będzie mógł je przesłać po skonfigurowaniu wysyłki e-mailowej. Usuń załączniki lub skontaktuj się z serwisem telefonicznie albo e-mailowo.')
       return
     }
 
@@ -407,6 +461,7 @@ function RepairForm() {
               />
             </div>
           </div>
+          <AttachmentUploader onChange={updateAttachments} />
           <div className="honeypot" aria-hidden="true">
             <label htmlFor="field-website">Pozostaw to pole puste</label>
             <input id="field-website" name="website" tabIndex={-1} autoComplete="off" value={values.website} onChange={(event) => updateValue('website', event.target.value)} />

@@ -33,6 +33,12 @@ The browser sends a `POST` request with `Content-Type: application/json`. The bo
 
 Optional fields are omitted when blank. Return any `2xx` response only after the backend has accepted the request; non-`2xx` responses are shown as errors. The backend must validate all input, apply appropriate spam protection and rate limiting, handle personal data securely, and configure any required CORS policy. The form includes a honeypot field, which is deliberately not sent to the API.
 
+### Attachments
+
+The current endpoint contract is JSON-only and there is no backend in this repository to receive attachments. Photos are compressed in the browser and videos are transcoded locally to MP4 (H.264/AAC where audio exists), at no more than 854 × 480 and 15 MB. Video input is limited to 100 MB and 30 seconds. Processing uses the browser's WebCodecs support through Mediabunny; video remains on the user's device and is not sent to an external transcoding service. If the device cannot decode or encode the selected media, the form displays an error instead of retaining the oversized original.
+
+The form displays local previews but does not upload or email files. Requests with attachments remain blocked until the intended submission behavior is implemented. The `mediabunny` dependency is licensed under MPL-2.0.
+
 ## Before launch
 
 - Configure and test the production repair-request endpoint.
